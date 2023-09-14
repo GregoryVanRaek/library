@@ -23,15 +23,22 @@ function displayMenu(){
 }
 function displayLibrary(){
     library.innerHTML = "";
-    myLibrary.forEach((book) => {
-        let bookDiv = document.createElement("div");
+    myLibrary.forEach((book, index) => 
+    {
+        if(book.remove === false)
+        {
+            let bookDiv = document.createElement("div");
             library.appendChild(bookDiv);
             bookDiv.innerHTML = "Title : " + book.title + "<br>Author : " + book.author + "<br>Pages : " + book.pages + "<br> Read ? " + book.read + "<br>";
             let removeButton = document.createElement('button');
             removeButton.textContent = "Remove";
-            removeButton.id = "rm" + book.title;
+            removeButton.classList.add('remove-button');
+            removeButton.dataset.index = index;
             bookDiv.appendChild(removeButton);
+        }
     })
+
+    removeFromLibrary();
 }
 
 const getBookFromInput = () => {
@@ -64,13 +71,18 @@ function addBookToLibrary(){
 }
 
 function removeFromLibrary(){
-    myLibrary.forEach((book) => {
-        let removeButton = document.getElementById("rm" + book.title);
-        removeButton.addEventListener("click", () => {
-            console.log('click');
+
+    let removeButtons = document.querySelectorAll(".remove-button");
+
+    removeButtons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            let index = event.target.dataset.index;
+            myLibrary[index].remove = true;
+            myLibrary.splice(index, 1);
+            displayLibrary();
         })
     })
+    
 }
 
 addBookToLibrary();
-removeFromLibrary();
