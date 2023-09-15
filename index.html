@@ -4,37 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&family=PT+Sans&family=Roboto:wght@500&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
     <script src="./script.js" defer></script>
     <title>Library</title>
 </head>
 <body>
-    <h1>My Book Library</h1>
-    <button id="new" type="button">New book</button>
+    <div id="overlay" class="overlay"></div>
+    <div class="head">
+        <h1>My Book Library</h1>
+        <button id="new" type="button"><img class="add" src="./img/plus.png" alt=""></button>
+    </div>
+
     <div id="newBook" class="hidden">
-        <form action="">
-            <div class="input-container">
+        <form action="" class="main-container">
+            <div class="input-container-lg">
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title" value="">
+                <input type="text" name="title" id="title" minlength="1" required>
             </div>
             <div class="input-container">
                 <label for="author">Author</label>
-                <input type="text" name="author" id="author" value="">
+                <input type="text" name="author" id="author">
             </div>
-            <div class="input-container">
+            <div class="input-container-lg">
                 <label for="pages">Pages</label>
-                <input type="text" name="pages" id="pages" value="">
+                <input type="number" name="pages" id="pages">
             </div>
             <div class="input-container">
                 <label for="read">Read ?</label>
-                <input type="checkbox" name="read" id="read" checked value="">
+                <input type="checkbox" name="read" id="read">
             </div>
             <div class="input-container">
-                <button type="submit" id="addBook">Add</button>
+                <button type="submit" id="addBook" class="addBook">Add</button>
             </div>
         </form>
     </div>
-    <div id="library">
-
-    </div>
+    <div id="library" class="library"></div>
 </body>
 </html>
